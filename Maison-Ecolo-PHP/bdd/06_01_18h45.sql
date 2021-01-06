@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : mer. 06 jan. 2021 à 16:53
+-- Généré le : mer. 06 jan. 2021 à 17:42
 -- Version du serveur :  5.7.31
 -- Version de PHP : 7.3.21
 
@@ -283,7 +283,7 @@ CREATE TABLE IF NOT EXISTS `ressources` (
 -- Structure de la table `région`
 --
 
-DROP TABLE IF EXISTS `région`;
+DROP TABLE IF EXISTS `region`;
 CREATE TABLE IF NOT EXISTS `région` (
   `IdRegion` int(11) NOT NULL,
   `IdMaison` int(11) NOT NULL,
@@ -357,16 +357,10 @@ CREATE TABLE IF NOT EXISTS `users` (
   `Prenom` varchar(50) DEFAULT NULL,
   `Genre` varchar(50) DEFAULT NULL,
   `NumeroTel` int(11) DEFAULT NULL,
-  `Rue` varchar(50) DEFAULT NULL,
+  `nom_utilisateur` varchar(50) DEFAULT NULL,
+  `password` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`IdUser`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
-
---
--- Déchargement des données de la table `users`
---
-
-INSERT INTO `users` (`IdUser`, `Age`, `DateCrea`, `EtatCompte`, `AdresseMail`, `Nom`, `Prenom`, `Genre`, `NumeroTel`, `Rue`) VALUES
-(1, 20, NULL, NULL, 'pierre@gmail.com', 'Laroche', 'Pierre', 'Homme ', 706050403, NULL);
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -390,11 +384,11 @@ CREATE TABLE IF NOT EXISTS `utiliser` (
 
 DROP TABLE IF EXISTS `ville`;
 CREATE TABLE IF NOT EXISTS `ville` (
-  `IdVille` int(11) NOT NULL,
-  `Ville` varchar(50) DEFAULT NULL,
+  `IdVille` int(11) NOT NULL AUTO_INCREMENT,
   `CodePostal` int(11) DEFAULT NULL,
   `Rue` varchar(50) DEFAULT NULL,
-  `NumMaison` int(11) DEFAULT NULL,
+  `num_maison` int(11) DEFAULT NULL,
+  `ville` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`IdVille`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 COMMIT;
