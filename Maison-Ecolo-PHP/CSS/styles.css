@@ -1,0 +1,175 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 16 déc. 2020, 12:20:36
+    Author     : Matthis
+*/
+body{
+    margin: 10px 0 ;
+    padding: 0;
+    background: #dea ;
+    font-family: Avenir, sans-serif;
+}
+
+.bandeau, #navigation{
+    background-color: #C0C0C0;
+    align-items: center;
+    margin: 0 ;
+}
+
+
+.logoSite{
+    float: left;
+    margin-left: 15px;
+    margin-top: 7px;
+}
+
+
+.navigation{
+
+}
+
+h1#title{
+    font-size: 300%;
+    height: 30px ;
+}
+
+div#contenu{
+    
+}
+
+p#paragraphe{
+    font-size: 150%;
+    margin: 0px 25%;
+    width: 50% ;
+    text-align:justify-all;
+    text-indent: 2em ;
+    line-height: 1.7em ;
+}
+
+h2#sousTitre{
+    font-size: 200%;
+    margin: 50px;
+}
+
+nav ul{
+    list-style-type: none;
+}
+
+nav li{
+    float: right;
+    width: 10%;
+    text-align: center;
+}
+
+nav ul::after{
+    content: "";
+    display: table;
+    clear: both;
+}
+
+
+nav#navigation{
+    width: 100%;
+    margin: 0 auto;   
+    padding-top: 8px;
+}
+
+nav a{
+    display: block;
+    text-decoration: none;
+    color:black;
+    border-bottom: 2px solid transparent;
+    padding: 15px 0px;
+}
+
+nav a:hover{
+    color: orange;
+    border-bottom: 2px solid gold;
+}
+
+
+table{
+  caption-side: bottom;
+  margin: 0 40%;
+}
+th, td{
+  border: 1px solid black;
+  padding: 10px;
+}
+caption{
+  background-color: #0AD;
+  font-weight: bold;
+}
+
+
+
+/*CSS pour la page Inscription*/
+
+
+.inscription h1 {
+    color: green;
+    text-align: center;
+    font-weight: bold;
+    text-decoration: underline;
+    text-shadow: 2px 2px 6px gray;
+    width: 25%;
+    border: 2px green double;
+    box-shadow: 2px 2px 3px black;
+    margin : auto;
+}
+
+.inscription p{
+    font-size: 0.8em;
+    text-align: center;
+}
+
+
+.inscription form{
+    text-align: center;
+    padding: 10px;
+    width: 50%;
+    margin: auto;
+    
+}
+
+.inscription footer{
+    color: blue;
+}
+
+.inscription input[type="submit"]{
+    border-radius: 10px;
+    margin: 5px 5px 5px 5px;
+    padding: 3px 3px 3px 3px;
+    font-weight: bold;
+    color: #fff;
+    background-color: blue;
+}
+.formulaire_inscription div{
+    display: flex;
+    justify-content: center;
+    color: blue;
+    font-size: 1em;
+}
+.formulaire_inscription input{
+    box-sizing: content-box;
+    margin: 5px 3px 5px 3px;
+    border-radius: 10px;
+    font-size: 1em;
+    color: blue;
+}
+
+.formulaire_inscription legend{
+    background-color: #e2e1de;
+    border-radius: 10px;
+    font-size: 1.3em;
+    padding: auto;
+    margin: auto;
+}
+
+.formulaire_inscription p{
+     font-weight: bold;
+}

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+
+
+
+<html>
+<head>
+<title>Inscription</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="Quentin SCHAU"/>
+<link rel="stylesheet" href="./CSS/styles.css">
+</head>
+<body class="inscription">
+<header>
+<div class="bandeau">
+            <div class="logoSite">
+                <a href = "index.html">
+                    <img src= "photoMenu.jpg" alt= "Appartement" title= "logo" width= "90" height= "60"> 
+                </a> 
+            </div>
+            
+            
+            
+            <nav id="navigation">
+                <div class="nav">
+                    <ul>
+                        <li> <a href = "connexion.html">Connexion </a> </li>
+                        <li> <a href = "inscription.html">Inscripition </a> </li>
+                        <li> <a href = "index.html">Accueil </a> </li>
+               
+                    </ul>
+                </div>
+            </nav>
+            
+        </div>
+<h1 class="inscription" >Maison écolo</h1>
+</header>
+<p class="inscription" ><br/>Vous n'êtes pas encore inscrit ? Remplissez le formulaire ci-dessous cela ne prend que quelque minutes.</p>
+<form method="post" action="traitement.php" >
+<!-- Début du formulaire d'inscription -->
+
+<fieldset class="formulaire_inscription">
+<legend>A propos de vous</legend>
+
+<p>
+<label for="nom">Nom</label> :
+<input type="text" name="nom" id=nom placeholder="Entrez votre nom" size="40" required />
+<br/>
+<label for="prenom">Prénom</label> :
+<input type="text" name="prenom" id=prenom placeholder="Entrez votre prénom" size="40" required />
+<br/>
+<label for="date_naissance">Date de naissance</label> :
+<input type="date" name="date_naissance" id="date_naissance" required />
+<br/>
+Genre :<br />
+</p>
+<div>
+<input type="radio" name="genre" value="Homme " id=genre_homme /> <label for="genre_homme">Homme</label><br />
+<input type="radio" name="genre" value="Femme " id=genre_femme /> <label for="genre_femme">Femme</label><br />
+<input type="radio" name="genre" value="Personnalisé " id=genre_perso /> <label for="genre_perso">Personnalisé</label><br />
+</div>
+
+</fieldset>
+
+
+<fieldset class="formulaire_inscription">
+<legend>Vos coordonnées</legend>
+
+
+
+<p>
+<label for="ville">Ville</label> :
+<input type="text" name="ville" id=ville placeholder="Entrez votre ville" size="40" required />
+<br/>
+<label for="code_postal">Code postal</label> :
+<input type="text" name="code_postal" id=code_postal placeholder="37000" size="5" maxlength="5" required />
+<br/>
+<label for="adresse">Adresse</label> :
+<input type="text" name="adresse" id="adresse" placeholder="Entrez votre adresse" size="40" required />
+<br/>
+<label for="email">Email</label> :
+<input type="email" name="email" id="email" required />
+</p>
+</fieldset>
+
+<fieldset class="formulaire_inscription">
+<legend>Vos identifiants</legend>
+
+<p>
+<label for="nom_utilisateur">Nom d'utilisateur</label> :
+<input type="text" name="nom_utilisateur" id="nom_utilisateur" placeholder="entrez votre nom d'utilisateur" size="40" required />
+<br/>
+<label for="password">Mot de passe (6 caractère minimum):</label>
+<input type="password" name="password" id="password" required />
+<br/>
+</p>
+</fieldset>
+<input type="submit" value="S'inscrire" />
+</form>
+
+<footer>
+<p>Déjà inscrit? <a href = "connexion.html">Connectez vous. </a></p>
+</footer>
+</body>
+</html>
