@@ -14,7 +14,7 @@ and open the template in the editor.
     <body>
         </br>
         <table>
-            <caption>Nombre d'inscrit</caption>
+            <caption>Nombre d'inscrits</caption>
 
             <tr>
                 <th></th>
@@ -81,9 +81,80 @@ and open the template in the editor.
                     ?>
                 </td>
             </tr>
-        </table>
+        </br>
 
-   
+        <table>
+            <caption>Nombre d'abonnées par tranches d'âge</caption>
+            
+            <tr>
+                <th>Tranches d'âge :</th>
+                <th>[18 - 24]</th>
+                <th>]24 - 45]</th>
+                <th>]45 - 65]</th>
+                <th>+65</th>
+            </tr>
+            <tr>
+                <td>Nombre :</td>
+                <td>
+                    <?php
+                    //Connection avec la BDD.
+                    $data = new PDO('mysql:host=localhost; dbname=mesappartements', 'root', '');
+                    $data->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                    //On execute la requete
+                    $reponse = $data->prepare("SELECT COUNT(*) FROM users WHERE age >=18 and age <= 24 ");
+                    $reponse->execute();
+                    //on récupere la premiere ligne avec fetch
+                    $nombre = $reponse->fetch(PDO::FETCH_ASSOC);
+                    //On l'afficher la valeur
+                    echo $nombre["COUNT(*)"];
+                    ?>
+                </td>
+                <td>
+                    <?php
+                    //Connection avec la BDD.
+                    $data = new PDO('mysql:host=localhost; dbname=mesappartements', 'root', '');
+                    $data->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                    //On execute la requete
+                    $reponse = $data->prepare("SELECT COUNT(*) FROM users WHERE age >24 and age <= 45 ");
+                    $reponse->execute();
+                    //on récupere la premiere ligne avec fetch
+                    $nombre = $reponse->fetch(PDO::FETCH_ASSOC);
+                    //On l'afficher la valeur
+                    echo $nombre["COUNT(*)"];
+                    ?></td>
+                <td>
+                    <?php
+                    //Connection avec la BDD.
+                    $data = new PDO('mysql:host=localhost; dbname=mesappartements', 'root', '');
+                    $data->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                    //On execute la requete
+                    $reponse = $data->prepare("SELECT COUNT(*) FROM users WHERE age >45 and age <=65 ");
+                    $reponse->execute();
+                    //on récupere la premiere ligne avec fetch
+                    $nombre = $reponse->fetch(PDO::FETCH_ASSOC);
+                    //On l'afficher la valeur
+                    echo $nombre["COUNT(*)"];
+                    ?>
+                </td>
+                <td>
+                    <?php
+                    //Connection avec la BDD.
+                    $data = new PDO('mysql:host=localhost; dbname=mesappartements', 'root', '');
+                    $data->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                    //On execute la requete
+                    $reponse = $data->prepare("SELECT COUNT(*) FROM users WHERE age >65 ");
+                    $reponse->execute();
+                    //on récupere la premiere ligne avec fetch
+                    $nombre = $reponse->fetch(PDO::FETCH_ASSOC);
+                    //On l'afficher la valeur
+                    echo $nombre["COUNT(*)"];
+                    ?>
+                </td>
+            </tr>
+            
+        
+        </br>
+        
         ?>
     </body>
 </html>
