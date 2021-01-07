@@ -88,8 +88,9 @@ nav a:hover{
 
 
 table{
-  caption-side: bottom;
+  caption-side: top;
   margin: 0 40%;
+  border-collapse: collapse;
 }
 th, td{
   border: 1px solid black;

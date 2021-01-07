@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : mer. 06 jan. 2021 à 17:42
+-- Généré le : jeu. 07 jan. 2021 à 19:17
 -- Version du serveur :  5.7.31
 -- Version de PHP : 7.3.21
 
@@ -283,7 +283,7 @@ CREATE TABLE IF NOT EXISTS `ressources` (
 -- Structure de la table `région`
 --
 
-DROP TABLE IF EXISTS `region`;
+DROP TABLE IF EXISTS `région`;
 CREATE TABLE IF NOT EXISTS `région` (
   `IdRegion` int(11) NOT NULL,
   `IdMaison` int(11) NOT NULL,
@@ -360,7 +360,17 @@ CREATE TABLE IF NOT EXISTS `users` (
   `nom_utilisateur` varchar(50) DEFAULT NULL,
   `password` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`IdUser`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `users`
+--
+
+INSERT INTO `users` (`IdUser`, `Age`, `DateCrea`, `EtatCompte`, `AdresseMail`, `Nom`, `Prenom`, `Genre`, `NumeroTel`, `nom_utilisateur`, `password`) VALUES
+(1, 32, '2021-01-07 19:04:21', 'Actif', 'Paul.Fu.29@hotmail.fr', 'Fuler', 'Paul', 'Autre ', 632145753, 'PaulFuler1', 'hocn,5d'),
+(2, 36, '2021-01-07 19:06:54', 'Actif', 'CamYsK@free.fr', 'Yoshkiz', 'Camille', 'Femme ', 697217610, 'CamCamYsk', 'fsvgsfb85'),
+(3, 20, '2021-01-07 19:01:44', 'Actif', 'Pierre.L59@gmail.com', 'Laroche', 'Pierre', 'Homme ', 725964135, 'PierroTheRock', 'azerty'),
+(4, 49, '2021-01-07 19:11:33', 'Actif', 'james.pautner@gmail.com', 'Pautner', 'James', 'Homme ', 761050504, 'JamesPaunter', 'j50gxkvbd');
 
 -- --------------------------------------------------------
 
@@ -390,7 +400,22 @@ CREATE TABLE IF NOT EXISTS `ville` (
   `num_maison` int(11) DEFAULT NULL,
   `ville` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`IdVille`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `ville`
+--
+
+INSERT INTO `ville` (`IdVille`, `CodePostal`, `Rue`, `num_maison`, `ville`) VALUES
+(1, 37200, 'Jean Portalis', 64, 'Tours'),
+(2, 37200, 'jean portalis', 64, 'Tours'),
+(3, 37200, 'jean portalis', 64, 'Tours'),
+(4, 25995, 'sdfsdfsdf', 95, 'dfdsdvds'),
+(5, 37800, 'xxvxcv', 9, 'sdfsdf'),
+(6, 59000, 'Boulevard de la libertÃ©', 450, 'Lille'),
+(7, 29200, 'Rue des marÃ©es', 36, 'Brest'),
+(8, 69000, 'AllÃ©e des combattants', 29, 'Lyon'),
+(9, 33000, 'Rue du GÃ©nÃ©ral Leclerc', 45, 'Bordeaux');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
