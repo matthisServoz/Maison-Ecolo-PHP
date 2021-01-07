@@ -173,3 +173,21 @@ caption{
 .formulaire_inscription p{
      font-weight: bold;
 }
+
+/*CSS pour la page connexion*/
+
+input[type=submit]{
+  background-color : red;
+  border-radius : 5px;
+  margin : 5px 5px 5px 5px;
+}
+
+h1{
+   text-align : center;
+    width: 40%;
+    margin: auto;
+    padding-bottom: 10px;
+}
+form{
+  text-align : center;
+}

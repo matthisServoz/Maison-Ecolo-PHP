@@ -6,20 +6,40 @@
       <title> Page de connexion </title>
     </head>
     <body>
-         <h1>Connexion</h1>
-         <form method="post" action= "accueil.htlm" >
-           <fieldset>
+        <header>
+            <!-- barre en haut du site (menu) -->
+            <div class="bandeau">
+                <div class="logoSite">
+                    <a href = "index.html">
+                        <img src= "photoMenu.jpg" alt= "Appartement" title= "logo" width= "90" height= "60"> 
+                    </a> 
+                </div>
+                <nav id="navigation">
+                    <div class="nav">
+                        <ul>
+                            <li> <a href = "connexion.html">Connexion </a> </li>
+                            <li> <a href = "inscription.html">Inscription </a> </li>
+                            <li> <a href = "index.html">Accueil </a> </li>
+
+                        </ul>
+                    </div>
+                </nav>
+            
+            </div>
+        </header>
+        <h1>Connexion</h1>
+        <form method="post" action= "accueil.htlm" >
+            <fieldset>
                 <label><b>Nom d'utilisateur : </b></label>
                 <input type="text" placeholder="Entrer le nom d'utilisateur ou email" name="username" required>
-      </br>
-      </br>
+                </br>
+                </br>
                 <label class="mdp"><b>Mot de passe : </b></label>
                 <input type="password" placeholder="Entrer le mot de passe" name="password" required>
-      </br>
-      </br>
+                </br>
+                </br>
                 <input type="submit" value='LOGIN' />
-          </form>
-</fieldset>
+        </form>
     </body>
 </html>
 
