@@ -27,11 +27,6 @@ body{
     margin-top: 7px;
 }
 
-
-.navigation{
-
-}
-
 h1#title{
     font-size: 300%;
     height: 30px ;
@@ -176,18 +171,19 @@ caption{
 
 /*CSS pour la page connexion*/
 
-input[type=submit]{
-  background-color : red;
+.connexion input[type="submit"]{
+  background-color : blue;
   border-radius : 5px;
   margin : 5px 5px 5px 5px;
 }
 
-h1{
+.connexion h1{
    text-align : center;
     width: 40%;
     margin: auto;
     padding-bottom: 10px;
 }
-form{
-  text-align : center;
+
+.connexion form{
+    text-align: center;
 }
