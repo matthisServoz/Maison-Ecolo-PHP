@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : jeu. 07 jan. 2021 à 19:17
+-- Généré le : jeu. 07 jan. 2021 à 23:31
 -- Version du serveur :  5.7.31
 -- Version de PHP : 7.3.21
 
@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 
 DROP TABLE IF EXISTS `appareil`;
 CREATE TABLE IF NOT EXISTS `appareil` (
-  `IdAppareil` int(11) NOT NULL,
+  `IdAppareil` int(11) NOT NULL AUTO_INCREMENT,
   `NomAppareil` varchar(50) DEFAULT NULL,
   `TypeAppareil` varchar(50) DEFAULT NULL,
   `Description` varchar(50) DEFAULT NULL,
@@ -46,7 +46,7 @@ CREATE TABLE IF NOT EXISTS `appareil` (
 
 DROP TABLE IF EXISTS `appartement`;
 CREATE TABLE IF NOT EXISTS `appartement` (
-  `IdAppartement` int(11) NOT NULL,
+  `IdAppartement` int(11) NOT NULL AUTO_INCREMENT,
   `Deg_sec` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`IdAppartement`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
@@ -113,23 +113,10 @@ CREATE TABLE IF NOT EXISTS `datepos` (
 DROP TABLE IF EXISTS `departement`;
 CREATE TABLE IF NOT EXISTS `departement` (
   `IdDepartement` int(11) NOT NULL,
+  `nom_departement` varchar(50) DEFAULT NULL,
   `IdVille` int(11) NOT NULL,
   PRIMARY KEY (`IdDepartement`),
   KEY `IdVille` (`IdVille`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Structure de la table `determiner`
---
-
-DROP TABLE IF EXISTS `determiner`;
-CREATE TABLE IF NOT EXISTS `determiner` (
-  `IdVille` int(11) NOT NULL,
-  `IdRegion` int(11) NOT NULL,
-  PRIMARY KEY (`IdVille`,`IdRegion`),
-  KEY `IdRegion` (`IdRegion`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -238,7 +225,7 @@ CREATE TABLE IF NOT EXISTS `occuper` (
 
 DROP TABLE IF EXISTS `piece`;
 CREATE TABLE IF NOT EXISTS `piece` (
-  `IdPiece` int(11) NOT NULL,
+  `IdPiece` int(11) NOT NULL AUTO_INCREMENT,
   `NomPiece` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`IdPiece`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
@@ -268,7 +255,7 @@ CREATE TABLE IF NOT EXISTS `posseder` (
 
 DROP TABLE IF EXISTS `ressources`;
 CREATE TABLE IF NOT EXISTS `ressources` (
-  `IdRessource` int(11) NOT NULL,
+  `IdRessource` int(11) NOT NULL AUTO_INCREMENT,
   `NomRessource` varchar(50) DEFAULT NULL,
   `VarMinCons` double DEFAULT NULL,
   `VarMinProd` double DEFAULT NULL,
@@ -286,11 +273,10 @@ CREATE TABLE IF NOT EXISTS `ressources` (
 DROP TABLE IF EXISTS `région`;
 CREATE TABLE IF NOT EXISTS `région` (
   `IdRegion` int(11) NOT NULL,
-  `IdMaison` int(11) NOT NULL,
-  `IdUser` int(11) NOT NULL,
+  `nom_region` varchar(50) DEFAULT NULL,
+  `IdDepartement` int(11) NOT NULL,
   PRIMARY KEY (`IdRegion`),
-  KEY `IdMaison` (`IdMaison`),
-  KEY `IdUser` (`IdUser`)
+  KEY `IdDepartement` (`IdDepartement`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -301,7 +287,7 @@ CREATE TABLE IF NOT EXISTS `région` (
 
 DROP TABLE IF EXISTS `substances`;
 CREATE TABLE IF NOT EXISTS `substances` (
-  `IdSubstance` int(11) NOT NULL,
+  `IdSubstance` int(11) NOT NULL AUTO_INCREMENT,
   `NomSubstance` varchar(50) DEFAULT NULL,
   `VarMinCons` double DEFAULT NULL,
   `VarMinProd` double DEFAULT NULL,
@@ -360,7 +346,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `nom_utilisateur` varchar(50) DEFAULT NULL,
   `password` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`IdUser`)
-) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `users`
@@ -370,7 +356,8 @@ INSERT INTO `users` (`IdUser`, `Age`, `DateCrea`, `EtatCompte`, `AdresseMail`, `
 (1, 32, '2021-01-07 19:04:21', 'Actif', 'Paul.Fu.29@hotmail.fr', 'Fuler', 'Paul', 'Autre ', 632145753, 'PaulFuler1', 'hocn,5d'),
 (2, 36, '2021-01-07 19:06:54', 'Actif', 'CamYsK@free.fr', 'Yoshkiz', 'Camille', 'Femme ', 697217610, 'CamCamYsk', 'fsvgsfb85'),
 (3, 20, '2021-01-07 19:01:44', 'Actif', 'Pierre.L59@gmail.com', 'Laroche', 'Pierre', 'Homme ', 725964135, 'PierroTheRock', 'azerty'),
-(4, 49, '2021-01-07 19:11:33', 'Actif', 'james.pautner@gmail.com', 'Pautner', 'James', 'Homme ', 761050504, 'JamesPaunter', 'j50gxkvbd');
+(4, 49, '2021-01-07 19:11:33', 'Actif', 'james.pautner@gmail.com', 'Pautner', 'James', 'Homme ', 761050504, 'JamesPaunter', 'j50gxkvbd'),
+(11, 66, '2021-01-07 23:30:19', 'Actif', 'Rico.bzk@gmail.com', 'Brzenska', 'Rico', 'Femme ', 795331752, 'RicoBZK', 'sdfgse8sdf');
 
 -- --------------------------------------------------------
 
@@ -399,23 +386,23 @@ CREATE TABLE IF NOT EXISTS `ville` (
   `Rue` varchar(50) DEFAULT NULL,
   `num_maison` int(11) DEFAULT NULL,
   `ville` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`IdVille`)
-) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+  `IdMaison` int(11) DEFAULT NULL,
+  `IdUser` int(11) NOT NULL,
+  PRIMARY KEY (`IdVille`),
+  KEY `IdMaison` (`IdMaison`),
+  KEY `IdUser` (`IdUser`)
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `ville`
 --
 
-INSERT INTO `ville` (`IdVille`, `CodePostal`, `Rue`, `num_maison`, `ville`) VALUES
-(1, 37200, 'Jean Portalis', 64, 'Tours'),
-(2, 37200, 'jean portalis', 64, 'Tours'),
-(3, 37200, 'jean portalis', 64, 'Tours'),
-(4, 25995, 'sdfsdfsdf', 95, 'dfdsdvds'),
-(5, 37800, 'xxvxcv', 9, 'sdfsdf'),
-(6, 59000, 'Boulevard de la libertÃ©', 450, 'Lille'),
-(7, 29200, 'Rue des marÃ©es', 36, 'Brest'),
-(8, 69000, 'AllÃ©e des combattants', 29, 'Lyon'),
-(9, 33000, 'Rue du GÃ©nÃ©ral Leclerc', 45, 'Bordeaux');
+INSERT INTO `ville` (`IdVille`, `CodePostal`, `Rue`, `num_maison`, `ville`, `IdMaison`, `IdUser`) VALUES
+(1, 37200, 'jean portalis', 64, 'Tours', NULL, 1),
+(2, 59000, 'Boulevard de la libertÃ©', 450, 'Lille', NULL, 2),
+(3, 29200, 'Rue des marÃ©es', 36, 'Brest', NULL, 3),
+(4, 69000, 'AllÃ©e des combattants', 29, 'Lyon', NULL, 4),
+(5, 37200, 'Rue Victor Hufo', 90, 'Tours', NULL, 11);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

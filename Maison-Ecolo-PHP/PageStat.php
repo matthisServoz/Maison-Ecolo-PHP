@@ -11,7 +11,26 @@ and open the template in the editor.
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
-    <body>
+    <body class='PageStat'>
+        <header>
+            <!-- barre en haut du site (menu) -->
+            <div class="bandeau">
+                <div class="logoSite">
+                    <a href = "index.html">
+                        <img src= "photoMenu.jpg" alt= "Appartement" title= "logo" width= "90" height= "60"> 
+                    </a> 
+                </div>
+                <nav id="navigation">
+                    <div class="nav">
+                        <ul>
+                            <li> <a href = "AccueilAdmin.html">Accueil</a> </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </header>
+        </br>
+        <p>Vous trouvez ci-dessous quelques statistiques concernant les utilisateurs de <strong>Mes Appartement</strong></p>
         </br>
         <table>
             <caption>Nombre d'inscrits</caption>

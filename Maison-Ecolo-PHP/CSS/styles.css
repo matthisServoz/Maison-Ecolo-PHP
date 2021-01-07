@@ -89,8 +89,9 @@ nav a:hover{
 
 table{
   caption-side: top;
-  margin: 0 40%;
+  margin: auto;
   border-collapse: collapse;
+  text-align: center;
 }
 th, td{
   border: 1px solid black;
@@ -186,5 +187,12 @@ caption{
 }
 
 .connexion form{
+    text-align: center;
+}
+
+
+/*CSS pour PageStat*/
+
+.PageStat p{
     text-align: center;
 }
