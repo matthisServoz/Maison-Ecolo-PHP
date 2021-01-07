@@ -12,13 +12,19 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-         <?php//Connection avec la BDD.
+         <?php
+            //Connection avec la BDD.
             $data = new PDO('mysql:host=localhost; dbname=mesappartements', 'root', '');
-            
-            $data->query("SELECT COUNT(*) FROM users WHERE Genre='homme'");
-            $donnees = $res->fetch_assoc();
-            <strong>nombre d'homme sur le site</strong> : <?php echo $donnees ?><br />
-            $data->closeCursor();
+            $data->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            //On execute la requete
+            $reponse = $data->prepare("SELECT COUNT(*) FROM users WHERE Genre='homme'");
+            $reponse->execute();
+            //on récupere la premiere ligne avec fetch
+            $donnees = $reponse->fetch(PDO::FETCH_ASSOC);
+            //On l'afficher la valeur
+            echo '<strong>nombre d\'homme sur le site '.$donnees["COUNT(*)"], '</strong>  <br/>';
+            /*<strong>nombre d'homme sur le site</strong> : <?php echo $donnees ?><br />
+            $data->closeCursor();*/
         ?>
     </body>
 </html>
