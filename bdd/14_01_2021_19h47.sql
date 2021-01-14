@@ -2,8 +2,8 @@
 -- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
--- HÃ´te : 127.0.0.1:3306
--- GÃ©nÃ©rÃ© le : jeu. 07 jan. 2021 Ã  23:31
+-- Hôte : 127.0.0.1:3306
+-- Généré le : jeu. 14 jan. 2021 à 18:47
 -- Version du serveur :  5.7.31
 -- Version de PHP : 7.3.21
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de donnÃ©es : `mesappartements`
+-- Base de données : `mesappartements`
 --
 
 -- --------------------------------------------------------
@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 
 DROP TABLE IF EXISTS `appareil`;
 CREATE TABLE IF NOT EXISTS `appareil` (
-  `IdAppareil` int(11) NOT NULL AUTO_INCREMENT,
+  `IdAppareil` int(11) NOT NULL,
   `NomAppareil` varchar(50) DEFAULT NULL,
   `TypeAppareil` varchar(50) DEFAULT NULL,
   `Description` varchar(50) DEFAULT NULL,
@@ -46,9 +46,11 @@ CREATE TABLE IF NOT EXISTS `appareil` (
 
 DROP TABLE IF EXISTS `appartement`;
 CREATE TABLE IF NOT EXISTS `appartement` (
-  `IdAppartement` int(11) NOT NULL AUTO_INCREMENT,
+  `IdAppartement` int(11) NOT NULL,
   `Deg_sec` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`IdAppartement`)
+  `IdMaison` int(11) NOT NULL,
+  PRIMARY KEY (`IdAppartement`),
+  KEY `IdMaison` (`IdMaison`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -114,10 +116,117 @@ DROP TABLE IF EXISTS `departement`;
 CREATE TABLE IF NOT EXISTS `departement` (
   `IdDepartement` int(11) NOT NULL,
   `nom_departement` varchar(50) DEFAULT NULL,
-  `IdVille` int(11) NOT NULL,
+  `IdRegion` int(11) NOT NULL,
   PRIMARY KEY (`IdDepartement`),
-  KEY `IdVille` (`IdVille`)
+  KEY `IdRegion` (`IdRegion`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `departement`
+--
+
+INSERT INTO `departement` (`IdDepartement`, `nom_departement`, `IdRegion`) VALUES
+(1, 'Ain', 84),
+(2, 'Aisne', 32),
+(3, 'Allier', 84),
+(4, 'Alpes-de-Haute-Provence', 93),
+(5, 'Hautes-Alpes', 93),
+(6, 'Alpes-Maritimes', 93),
+(7, 'Ardeche', 84),
+(8, 'Ardennes', 44),
+(9, 'Ariege', 76),
+(10, 'Aube', 44),
+(11, 'Aude', 76),
+(12, 'Aveyron', 76),
+(13, 'Bouches-du-Rhone', 93),
+(14, 'Calvados', 28),
+(15, 'Cantal', 84),
+(16, 'Charente', 75),
+(17, 'Charente-Maritime', 75),
+(18, 'Cher', 24),
+(19, 'Correze', 75),
+(21, 'Cote-d\'Or', 27),
+(22, 'Cotes-d\'Armor', 53),
+(23, 'Creuse', 75),
+(24, 'Dordogne', 75),
+(25, 'Doubs', 27),
+(26, 'Drome', 84),
+(27, 'Eure', 28),
+(28, 'Eure-et-Loir', 24),
+(29, 'Finistere', 53),
+(201, 'Corse-du-Sud', 94),
+(202, 'Haute-Corse', 94),
+(30, 'Gard', 76),
+(31, 'Haute-Garonne', 76),
+(32, 'Gers', 76),
+(33, 'Gironde', 75),
+(34, 'Herault', 76),
+(35, 'Ille-et-Vilaine', 53),
+(36, 'Indre', 24),
+(37, 'Indre-et-Loire', 24),
+(38, 'Isere', 84),
+(39, 'Jura', 27),
+(40, 'Landes', 75),
+(41, 'Loir-et-Cher', 24),
+(42, 'Loire', 84),
+(43, 'Haute-Loire', 84),
+(44, 'Loire-Atlantique', 52),
+(45, 'Loiret', 24),
+(46, 'Lot', 76),
+(47, 'Lot-et-Garonne', 75),
+(48, 'Lozere', 76),
+(49, 'Maine-et-Loire', 52),
+(50, 'Manche', 28),
+(51, 'Marne', 44),
+(52, 'Haute-Marne', 44),
+(53, 'Mayenne', 52),
+(54, 'Meurthe-et-Moselle', 44),
+(55, 'Meuse', 44),
+(56, 'Morbihan', 53),
+(57, 'Moselle', 44),
+(58, 'Nievre', 27),
+(59, 'Nord', 32),
+(60, 'Oise', 32),
+(61, 'Orne', 28),
+(62, 'Pas-de-Calais', 32),
+(63, 'Puy-de-Dome', 84),
+(64, 'Pyrenees-Atlantiques', 75),
+(65, 'Hautes-Pyrenees', 76),
+(66, 'Pyrenees-Orientales', 76),
+(67, 'Bas-Rhin', 44),
+(68, 'Haut-Rhin', 44),
+(69, 'Rhone', 84),
+(70, 'Haute-Saone', 27),
+(71, 'Saone-et-Loire', 27),
+(72, 'Sarthe', 52),
+(73, 'Savoie', 84),
+(74, 'Haute-Savoie', 84),
+(75, 'Paris', 11),
+(76, 'Seine-Maritime', 28),
+(77, 'Seine-et-Marne', 11),
+(78, 'Yvelines', 11),
+(79, 'Deux-Sevres', 75),
+(80, 'Somme', 32),
+(81, 'Tarn', 76),
+(82, 'Tarn-et-Garonne', 76),
+(83, 'Var', 93),
+(84, 'Vaucluse', 93),
+(85, 'Vendee', 52),
+(86, 'Vienne', 75),
+(87, 'Haute-Vienne', 75),
+(88, 'Vosges', 44),
+(89, 'Yonne', 27),
+(90, 'Territoire de Belfort', 27),
+(91, 'Essonne', 11),
+(92, 'Hauts-de-Seine', 11),
+(93, 'Seine-Saint-Denis', 11),
+(94, 'Val-de-Marne', 11),
+(95, 'Val-d\'Oise', 11),
+(971, 'Guadeloupe', 1),
+(972, 'Martinique', 2),
+(973, 'Guyane', 3),
+(974, 'La Reunion', 4),
+(976, 'Mayotte', 6);
 
 -- --------------------------------------------------------
 
@@ -139,11 +248,11 @@ CREATE TABLE IF NOT EXISTS `engendrer` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `entraÃ®ner`
+-- Structure de la table `entraîner`
 --
 
-DROP TABLE IF EXISTS `entraÃ®ner`;
-CREATE TABLE IF NOT EXISTS `entraÃ®ner` (
+DROP TABLE IF EXISTS `entraîner`;
+CREATE TABLE IF NOT EXISTS `entraîner` (
   `IdRessource` int(11) NOT NULL,
   `IdTypePiece` int(11) NOT NULL,
   `IdSubstance` int(11) NOT NULL,
@@ -193,14 +302,14 @@ CREATE TABLE IF NOT EXISTS `louer` (
 
 DROP TABLE IF EXISTS `maison`;
 CREATE TABLE IF NOT EXISTS `maison` (
-  `IdMaison` int(11) NOT NULL,
+  `IdMaison` int(11) NOT NULL AUTO_INCREMENT,
   `NomMaison` varchar(50) DEFAULT NULL,
   `NumeroMaison` int(11) DEFAULT NULL,
   `Eval` varchar(50) DEFAULT NULL,
   `Deg_iso` varchar(50) DEFAULT NULL,
-  `IdAppartement` int(11) NOT NULL,
+  `IdVille` int(11) NOT NULL,
   PRIMARY KEY (`IdMaison`),
-  KEY `IdAppartement` (`IdAppartement`)
+  KEY `IdVille` (`IdVille`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -225,7 +334,7 @@ CREATE TABLE IF NOT EXISTS `occuper` (
 
 DROP TABLE IF EXISTS `piece`;
 CREATE TABLE IF NOT EXISTS `piece` (
-  `IdPiece` int(11) NOT NULL AUTO_INCREMENT,
+  `IdPiece` int(11) NOT NULL,
   `NomPiece` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`IdPiece`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
@@ -255,7 +364,7 @@ CREATE TABLE IF NOT EXISTS `posseder` (
 
 DROP TABLE IF EXISTS `ressources`;
 CREATE TABLE IF NOT EXISTS `ressources` (
-  `IdRessource` int(11) NOT NULL AUTO_INCREMENT,
+  `IdRessource` int(11) NOT NULL,
   `NomRessource` varchar(50) DEFAULT NULL,
   `VarMinCons` double DEFAULT NULL,
   `VarMinProd` double DEFAULT NULL,
@@ -267,17 +376,39 @@ CREATE TABLE IF NOT EXISTS `ressources` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `rÃ©gion`
+-- Structure de la table `région`
 --
 
-DROP TABLE IF EXISTS `rÃ©gion`;
-CREATE TABLE IF NOT EXISTS `rÃ©gion` (
+DROP TABLE IF EXISTS `région`;
+CREATE TABLE IF NOT EXISTS `région` (
   `IdRegion` int(11) NOT NULL,
   `nom_region` varchar(50) DEFAULT NULL,
-  `IdDepartement` int(11) NOT NULL,
-  PRIMARY KEY (`IdRegion`),
-  KEY `IdDepartement` (`IdDepartement`)
+  PRIMARY KEY (`IdRegion`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `région`
+--
+
+INSERT INTO `région` (`IdRegion`, `nom_region`) VALUES
+(1, 'Guadeloupe'),
+(2, 'Martinique'),
+(3, 'Guyane'),
+(4, 'La Reunion'),
+(6, 'Mayotte'),
+(11, 'Ile-de-France'),
+(24, 'Centre-Val de Loire'),
+(27, 'Bourgogne-Franche-Comtee'),
+(28, 'Normandie'),
+(32, 'Hauts-de-France'),
+(44, 'Grand Est'),
+(52, 'Pays de la Loire'),
+(53, 'Bretagne'),
+(75, 'Nouvelle-Aquitaine'),
+(76, 'Occitanie'),
+(84, 'Auvergne-Rhone-Alpes'),
+(93, 'Provence-Alpes-Cote d\'Azur'),
+(94, 'Corse');
 
 -- --------------------------------------------------------
 
@@ -287,7 +418,7 @@ CREATE TABLE IF NOT EXISTS `rÃ©gion` (
 
 DROP TABLE IF EXISTS `substances`;
 CREATE TABLE IF NOT EXISTS `substances` (
-  `IdSubstance` int(11) NOT NULL AUTO_INCREMENT,
+  `IdSubstance` int(11) NOT NULL,
   `NomSubstance` varchar(50) DEFAULT NULL,
   `VarMinCons` double DEFAULT NULL,
   `VarMinProd` double DEFAULT NULL,
@@ -305,7 +436,7 @@ CREATE TABLE IF NOT EXISTS `substances` (
 DROP TABLE IF EXISTS `typeappartement`;
 CREATE TABLE IF NOT EXISTS `typeappartement` (
   `IdTypeAppartement` int(11) NOT NULL,
-  `LibellÃ©` varchar(50) DEFAULT NULL,
+  `Libellé` varchar(50) DEFAULT NULL,
   `IdAppartement` int(11) NOT NULL,
   PRIMARY KEY (`IdTypeAppartement`),
   KEY `IdAppartement` (`IdAppartement`)
@@ -345,19 +476,20 @@ CREATE TABLE IF NOT EXISTS `users` (
   `NumeroTel` int(11) DEFAULT NULL,
   `nom_utilisateur` varchar(50) DEFAULT NULL,
   `password` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`IdUser`)
-) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+  `Admin` varchar(50) NOT NULL,
+  `IdVille` int(11) NOT NULL,
+  PRIMARY KEY (`IdUser`),
+  KEY `IdVille` (`IdVille`)
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
--- DÃ©chargement des donnÃ©es de la table `users`
+-- Déchargement des données de la table `users`
 --
 
-INSERT INTO `users` (`IdUser`, `Age`, `DateCrea`, `EtatCompte`, `AdresseMail`, `Nom`, `Prenom`, `Genre`, `NumeroTel`, `nom_utilisateur`, `password`) VALUES
-(1, 32, '2021-01-07 19:04:21', 'Actif', 'Paul.Fu.29@hotmail.fr', 'Fuler', 'Paul', 'Autre ', 632145753, 'PaulFuler1', 'hocn,5d'),
-(2, 36, '2021-01-07 19:06:54', 'Actif', 'CamYsK@free.fr', 'Yoshkiz', 'Camille', 'Femme ', 697217610, 'CamCamYsk', 'fsvgsfb85'),
-(3, 20, '2021-01-07 19:01:44', 'Actif', 'Pierre.L59@gmail.com', 'Laroche', 'Pierre', 'Homme ', 725964135, 'PierroTheRock', 'azerty'),
-(4, 49, '2021-01-07 19:11:33', 'Actif', 'james.pautner@gmail.com', 'Pautner', 'James', 'Homme ', 761050504, 'JamesPaunter', 'j50gxkvbd'),
-(11, 66, '2021-01-07 23:30:19', 'Actif', 'Rico.bzk@gmail.com', 'Brzenska', 'Rico', 'Femme ', 795331752, 'RicoBZK', 'sdfgse8sdf');
+INSERT INTO `users` (`IdUser`, `Age`, `DateCrea`, `EtatCompte`, `AdresseMail`, `Nom`, `Prenom`, `Genre`, `NumeroTel`, `nom_utilisateur`, `password`, `Admin`, `IdVille`) VALUES
+(1, 20, '2021-01-13 18:39:36', 'Actif', 'Pierre.Laroche@gmail.com', 'Laroche', 'Pierre', 'Homme ', 769420545, 'PierreTheRock', 'azerty', 'administrateur', 3),
+(2, 40, '2021-01-13 18:42:32', 'Actif', 'qutheo@gmail.com', 'Mischeau', 'Quentheo', 'Homme ', 712345677, 'Tesmichau', 'aaaaaaaaa', 'utilisateur', 4),
+(3, 68, '2021-01-13 18:47:34', 'Actif', 'Gricha.Jaja@hotmail.fr', 'Jager', 'Gricha', 'Autre ', 654549812, 'GrichaJager', 'password', 'utilisateur', 5);
 
 -- --------------------------------------------------------
 
@@ -386,23 +518,21 @@ CREATE TABLE IF NOT EXISTS `ville` (
   `Rue` varchar(50) DEFAULT NULL,
   `num_maison` int(11) DEFAULT NULL,
   `ville` varchar(50) DEFAULT NULL,
-  `IdMaison` int(11) DEFAULT NULL,
-  `IdUser` int(11) NOT NULL,
+  `IdDepartement` int(11) NOT NULL,
   PRIMARY KEY (`IdVille`),
-  KEY `IdMaison` (`IdMaison`),
-  KEY `IdUser` (`IdUser`)
+  KEY `IdDepartement` (`IdDepartement`)
 ) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 --
--- DÃ©chargement des donnÃ©es de la table `ville`
+-- Déchargement des données de la table `ville`
 --
 
-INSERT INTO `ville` (`IdVille`, `CodePostal`, `Rue`, `num_maison`, `ville`, `IdMaison`, `IdUser`) VALUES
-(1, 37200, 'jean portalis', 64, 'Tours', NULL, 1),
-(2, 59000, 'Boulevard de la libertÃƒÂ©', 450, 'Lille', NULL, 2),
-(3, 29200, 'Rue des marÃƒÂ©es', 36, 'Brest', NULL, 3),
-(4, 69000, 'AllÃƒÂ©e des combattants', 29, 'Lyon', NULL, 4),
-(5, 37200, 'Rue Victor Hufo', 90, 'Tours', NULL, 11);
+INSERT INTO `ville` (`IdVille`, `CodePostal`, `Rue`, `num_maison`, `ville`, `IdDepartement`) VALUES
+(1, 37200, 'Jean Portalis', 64, 'Tours', 37),
+(2, 37200, 'Jean Portalis', 64, 'Tours', 37),
+(3, 37200, 'Jean Portalis', 64, 'Tours', 37),
+(4, 13000, 'AllÃ©e du prado', 13, 'Marseille', 13),
+(5, 75000, 'Allee de Versaille', 154, 'Paris', 75);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
