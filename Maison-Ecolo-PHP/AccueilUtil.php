@@ -45,8 +45,6 @@ and open the template in the editor.
                
         <h1>Bienvenue <?php echo $_SESSION['nom_utilisateur']?> sur notre site</h1>
         
-        <p>Voici les appartements que tu loue</p>
-        
         <?php 
         // On compte le nombre d'appartement que loue l'utilisateur
         try{
@@ -61,22 +59,24 @@ and open the template in the editor.
                                         . "AND IdUser = ? ;");
             $reponse->execute([$date,$date,$_SESSION['IdUser']]);
             $nb_appart = $reponse->fetch(PDO::FETCH_ASSOC)["COUNT(*)"];
-            $reponse->CloseCursor();
+            
         }
         catch(PDOException $e){
                 echo 'Impossible de traiter les données. Erreur : '.$e->getMessage();
         }
-        ?>
         
-        <table>
-            <caption>Appartement loués</caption>
+        if ($nb_appart != 0){
+            echo 
+            "<p>Voici les appartements que tu loue</p>".
+            "<table>".
+            "<caption>Appartement loués</caption>".
             
-            <tr>
-                <th>numéro d'appartement</th>
-                <th>adresse</th>
-                <th>Situé dans l'immeuble</th>
-            </tr>
-            <?php 
+            "<tr>".
+                "<th>numéro d'appartement</th>".
+                "<th>adresse</th>".
+                "<th>Situé dans l'immeuble</th>".
+            "</tr>";
+             
             //on récupère les id des appartements
             try{
                 $date = date('y-m-d H:i:s');
@@ -138,7 +138,11 @@ and open the template in the editor.
             }
             $reponse->CloseCursor();
             $reponse1->CloseCursor();
-            ?>
+        }
+        else{
+            echo "Vous ne louée pas d'appartement";
+        }
+        ?>
         
         
     </body>
