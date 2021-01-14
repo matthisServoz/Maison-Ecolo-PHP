@@ -1,7 +1,5 @@
 <?php
 session_start(); // On démarre la session AVANT toute chose
-$_SESSION['nom_utilisateur']='PierreTheRock';
-$_SESSION['IdUser']=1;
 ?>
 
 
