@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Nouvelle Maison</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="./CSS/styles.css">
+    </head>
+    <body>
+        <form action="creaMaison.php" method="post" >
+                
+                <fieldset class="formulaire_inscription">
+                    <legend>information de votre maison</legend>
+                    <p>
+                        <label for="nomMaison">nomMaison</label> :
+                        <input type="text" name="nomMaison" id="nomMaison" placeholder="Entrez ici" size="40" required />
+                        <br/>
+                        <label for="numeroM">numeroM</label> :
+                        <input type="number" name="numeroM" id="numeroM" required />
+                        <br/>
+                        <label for="evalution">eval </label> :
+                        <input type="text" name="eval" id="eval" placeholder="Evaluation de la maison" size="40" required />
+                        <br/>
+                        <label for="degreIso">degreIso </label> :
+                        <input type="text" name="degreIso" id="degreIso" placeholder="degre d'isolation" size="40" required />
+                        <br/>
+                        <label for="ville">ville </label> :
+                        <input type="text" name="ville" id="ville" placeholder="ville de la maison" size="40" required />
+                        <br/>
+                        <label for="CodePostal">CodePostal </label> :
+                        <input type="number" name="CodePostal" id="CodePostal" required />
+                        <br/>
+                        <label for="Rue">Rue </label> :
+                        <input type="text" name="Rue" id="Rue" placeholder="nom de la rue" size="40" required />
+                        <br/>
+                        
+                        
+                    </p>
+                    
+                </fieldset>
+            <input type="submit" value="ajouter" />
+    </body>
+</html>

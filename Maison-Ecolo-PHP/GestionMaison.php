@@ -17,7 +17,7 @@ and open the template in the editor.
             <!-- barre en haut du site (menu) -->
             <div class="bandeau">
                 <div class="logoSite">
-                    <a href = "index.html">
+                    <a href = "AccueilAdmin.html">
                         <img src= "photoMenu.jpg" alt= "Appartement" title= "logo" width= "90" height= "60"> 
                     </a> 
                 </div>
@@ -32,4 +32,19 @@ and open the template in the editor.
                 </nav>
             </div>
         </header>
+        </br>
+        <p>Cliquez sur "ajout" pour ajouter une nouvelle maison, 
+            cliquez sur une maison deja existante pour y ajouter des appartements !</p>
+        </br>
+        <a href = "creaMaison.html"> <button 
+                   "type="button">
+                   nouvelle maison
+                
+        </button> </a>
         
+        
+
+        
+        
+    </body>
+    </head>
