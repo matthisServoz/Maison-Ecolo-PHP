@@ -14,6 +14,18 @@ body{
     font-family: Avenir, sans-serif;
 }
 
+p{
+    text-align: center;
+}
+
+button{
+  display: block;
+  margin : auto;
+}
+input[type="submit"]{
+  display: block;
+  margin : auto;
+}
 .bandeau, #navigation{
     background-color: #C0C0C0;
     align-items: center;

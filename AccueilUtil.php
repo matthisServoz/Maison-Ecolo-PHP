@@ -65,7 +65,7 @@ and open the template in the editor.
         
         if ($nb_appart != 0){
             echo 
-            "<p>Voici les appartements que tu loue</p>".
+            "<p>Voici les appartements que vous louez</p>".
             "<table>".
             "<caption>Appartement loués</caption>".
             

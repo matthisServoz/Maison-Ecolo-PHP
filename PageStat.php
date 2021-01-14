@@ -70,7 +70,8 @@ and open the template in the editor.
                     $nombre_femme = $reponse->fetch(PDO::FETCH_ASSOC);
                     //On l'afficher la valeur
                     echo $nombre_femme["COUNT(*)"];
-                    ?></td>
+                    ?>
+                </td>
                 <td>
                     <?php
                     //Connection avec la BDD.
@@ -174,6 +175,6 @@ and open the template in the editor.
         
         </br>
         
-        ?>
+        
     </body>
 </html>
