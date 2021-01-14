@@ -41,7 +41,7 @@ and open the template in the editor.
             
         </div>
                
-        <h1>Bienvenue <?php echo $_SESSION['nom_utilisateur']?> sur notre site</h1>
+        <h1>Bienvenue <?php echo $_SESSION['nom_utilsateur']?> sur notre site</h1>
         
         <?php 
         // On compte le nombre d'appartement que loue l'utilisateur

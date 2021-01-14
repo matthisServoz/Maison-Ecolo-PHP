@@ -1,6 +1,5 @@
  <?php
-        // Démarage de la session  
-        session_start();
+ session_start();
 ?>
 <!DOCTYPE html>
 
@@ -39,7 +38,7 @@
                             $IdUser = $row['IdUser'] ;
                             $Admin = $row['Admin'];
                         }
-
+                        
                         $_SESSION['nom_utilsateur'] = $nom_utilisateur ;
                         $_SESSION['IdUser'] = $IdUser;
                         $_SESSION['password'] = $password;
