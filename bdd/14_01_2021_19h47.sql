@@ -487,9 +487,9 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`IdUser`, `Age`, `DateCrea`, `EtatCompte`, `AdresseMail`, `Nom`, `Prenom`, `Genre`, `NumeroTel`, `nom_utilisateur`, `password`, `Admin`, `IdVille`) VALUES
-(1, 20, '2021-01-13 18:39:36', 'Actif', 'Pierre.Laroche@gmail.com', 'Laroche', 'Pierre', 'Homme ', 769420545, 'PierreTheRock', 'azerty', 'administrateur', 3),
-(2, 40, '2021-01-13 18:42:32', 'Actif', 'qutheo@gmail.com', 'Mischeau', 'Quentheo', 'Homme ', 712345677, 'Tesmichau', 'aaaaaaaaa', 'utilisateur', 4),
-(3, 68, '2021-01-13 18:47:34', 'Actif', 'Gricha.Jaja@hotmail.fr', 'Jager', 'Gricha', 'Autre ', 654549812, 'GrichaJager', 'password', 'utilisateur', 5);
+(1, 20, '2021-01-13 18:39:36', 'Actif', 'Pierre.Laroche@gmail.com', 'Laroche', 'Pierre', 'Homme ', 769420545, 'PierreTheRock', 'azerty', 'administrateur', 1),
+(2, 40, '2021-01-13 18:42:32', 'Actif', 'qutheo@gmail.com', 'Mischeau', 'Quentheo', 'Homme ', 712345677, 'Tesmichau', 'aaaaaaaaa', 'utilisateur', 2),
+(3, 68, '2021-01-13 18:47:34', 'Actif', 'Gricha.Jaja@hotmail.fr', 'Jager', 'Gricha', 'Autre ', 654549812, 'GrichaJager', 'password', 'utilisateur', 3);
 
 -- --------------------------------------------------------
 
@@ -529,10 +529,9 @@ CREATE TABLE IF NOT EXISTS `ville` (
 
 INSERT INTO `ville` (`IdVille`, `CodePostal`, `Rue`, `num_maison`, `ville`, `IdDepartement`) VALUES
 (1, 37200, 'Jean Portalis', 64, 'Tours', 37),
-(2, 37200, 'Jean Portalis', 64, 'Tours', 37),
-(3, 37200, 'Jean Portalis', 64, 'Tours', 37),
-(4, 13000, 'Allée du prado', 13, 'Marseille', 13),
-(5, 75000, 'Allee de Versaille', 154, 'Paris', 75);
+
+(2, 13000, 'Allée du prado', 13, 'Marseille', 13),
+(3, 75000, 'Allee de Versaille', 154, 'Paris', 75);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

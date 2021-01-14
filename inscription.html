@@ -54,40 +54,44 @@
                 </fieldset>
 
                 <fieldset class="formulaire_inscription">
-                <legend>Vos coordonnées</legend>
+                    <legend>Vos coordonnées</legend>
 
-                <p>
-                    <label for="ville">Ville</label> :
-                    <input type="text" name="ville" id="ville" placeholder="Entrez votre ville" size="40" required />
-                    <br/>
-                    <label for="code_postal">Code postal</label> :
-                    <input type="text" name="code_postal" id="code_postal" placeholder="37000" size="5" maxlength="5" required />
-                    <br/>
-                    <label for="rue">Rue</label> :
-                    <input type="text" name="rue" id="rue" placeholder="Entrez votre adresse" size="40" required />
-                    <br/>
-                    <label for="num_maison">Numéro</label> :
-                    <input type="number" name="num_maison" id="num_maison" required />
-                    <br/>
-                    <label for="email">Email</label> :
-                    <input type="email" name="email" id="email" required />
-                    <br/>
-                    <label for="numero_tel">Numéro de téléphone</label> :
-                    <input type="tel" name="numero_tel" id="numero_tel" size="10" maxlength="10"/>
-                    
-                </p>
+                    <p>
+                        <label for="ville">Ville</label> :
+                        <input type="text" name="ville" id="ville" placeholder="Entrez votre ville" size="40" required />
+                        <br/>
+                        <label for="code_postal">Code postal</label> :
+                        <input type="text" name="code_postal" id="code_postal" placeholder="37000" size="5" maxlength="5" required />
+                        <br/>
+                        <label for="rue">Rue</label> :
+                        <input type="text" name="rue" id="rue" placeholder="Entrez votre adresse" size="40" required />
+                        <br/>
+                        <label for="num_maison">Numéro</label> :
+                        <input type="number" name="num_maison" id="num_maison" required />
+                        <br/>
+                        <label for="email">Email</label> :
+                        <input type="email" name="email" id="email" required />
+                        <br/>
+                        <label for="numero_tel">Numéro de téléphone</label> :
+                        <input type="tel" name="numero_tel" id="numero_tel" size="10" maxlength="10"/>
+                    </p>
                 </fieldset>
                 
                 <fieldset class="formulaire_inscription">
-                <legend>Vos identifiants</legend>
-                <p>
-                    <label for="nom_utilisateur">Nom d'utilisateur</label> :
-                    <input type="text" name="nom_utilisateur" id="nom_utilisateur" placeholder="entrez votre nom d'utilisateur" size="40" required />
-                    <br/>
-                    <label for="password">Mot de passe (6 caractère minimum):</label>
-                    <input type="password" name="password" id="password" required />
-                    <br/>
-                </p>
+                   <legend>Vos identifiants</legend>
+                    <p>
+                        <label for="nom_utilisateur">Nom d'utilisateur</label> :
+                        <input type="text" name="nom_utilisateur" id="nom_utilisateur" placeholder="entrez votre nom d'utilisateur" size="40" required />
+                        <br/>
+                        <label for="password">Mot de passe (6 caractère minimum):</label>
+                        <input type="password" name="password" id="password" required />
+                        <br/>
+                    </p>
+                    <div> 
+                        <input type="radio" name="Admin" value="utilisateur" id="utilisateur" /> <label for="utilisateur">utilisateur</label><br/>
+                        <input type="radio" name="Admin" value="administrateur" id="administrateur" /> <label for="administrateur">administrateur</label><br/>
+                    </div>
+                    
                 </fieldset>
                 <input type="submit" value="S'inscrire" />
             </form>
