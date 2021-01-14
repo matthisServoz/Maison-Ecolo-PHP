@@ -37,7 +37,7 @@ and open the template in the editor.
                                 
                 $reponse = $dbco->prepare("SELECT COUNT(*) FROM Maison WHERE nomMaison = :nomM and numeroM = :numeroM");
                 $reponse->bindParam(':nomMaison',$nomMaison);
-		$reponse->bindParam(':numeroM',numeroM);
+		$reponse->bindParam(':numeroM',$numeroM);
                 $reponse->execute();
                 $compte = $reponse->fetch(PDO::FETCH_ASSOC)["COUNT(*)"];
                 
