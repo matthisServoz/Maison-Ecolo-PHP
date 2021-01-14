@@ -33,9 +33,9 @@ and open the template in the editor.
             <nav id="navigation">
                 <div class="nav">
                     <ul>
-                        <li> <a href = "compte_util.php">monCompte </a> </li>
-                        <li> <a href = "afficha_appart_util.php">mes appartements</a> </li>
-                        <li> <a href = "AccueilUtil.html">ma Consomation </a> </li>
+                        <!--<li> <a href = "compte_util.php">monCompte </a> </li>-->
+                        <li> <a href = "Gestion_appart_util.php">mes appartements</a> </li>
+                        <!--<li> <a href = "AccueilUtil.html">ma Consomation </a> </li>-->
                
                     </ul>
                 </div>
