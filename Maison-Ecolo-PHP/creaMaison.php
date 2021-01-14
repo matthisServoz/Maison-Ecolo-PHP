@@ -19,7 +19,7 @@ and open the template in the editor.
             
             $CodePostal = $_POST["CodePostal"];
             $Rue = $_POST["Rue"];
-            $idDep = $_Post[floor("CodePostal"/1000)];
+            
             
             $nomMaison = $_POST["nomMaison"];
             $numeroM = $_POST["numeroM"];
@@ -54,7 +54,7 @@ and open the template in the editor.
                     $sth->bindParam(':numeroM',$numeroM);
                     $sth->bindParam(':numMaison',$numMaison);
                     $sth->bindParam(':ville',$ville);
-                    $sth->bindParam(':idDep',$idDep);
+                    $sth->bindParam(':idDep',floor($code_postal/1000));
                     
                     $sth->execute();
                     $sth->CloseCursor();
