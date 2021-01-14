@@ -140,7 +140,7 @@ and open the template in the editor.
             $reponse1->CloseCursor();
         }
         else{
-            echo "Vous ne louée pas d'appartement";
+            echo "Vous ne louez pas d'appartement";
         }
         ?>
         
