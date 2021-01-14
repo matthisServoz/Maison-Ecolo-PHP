@@ -27,18 +27,19 @@
             <h1>Connexion</h1>
         </header>
         
-        <form method="post" action= "accueil.htlm" >
+        <form method="post" action= "connexion.php" >
             <fieldset>
-                <label><b>Nom d'utilisateur : </b></label>
-                <input type="text" placeholder="Entrer le nom d'utilisateur ou email" name="username" required>
-                </br>
-                </br>
-                <label class="mdp"><b>Mot de passe : </b></label>
-                <input type="password" placeholder="Entrer le mot de passe" name="password" required>
-                </br>
-                </br>
+                <legend>Vos identifiants</legend>
+                <p>
+                    <label for="nom_utilisateur">Nom d'utilisateur</label> :
+                    <input type="text" name="nom_utilisateur" id="nom_utilisateur" placeholder="entrez votre nom d'utilisateur" size="40" required />
+                    <br/>
+                    <label for="password">Mot de passe:</label>
+                    <input type="password" name="password" id="password" required />
+                    <br/>
+                    
+            </fieldset>
                 <input type="submit" value='LOGIN' />
         </form>
     </body>
 </html>
-

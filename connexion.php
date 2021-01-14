@@ -1,46 +1,65 @@
+ <?php
+        // Démarage de la session  
+        session_start();
+?>
 <!DOCTYPE html>
+
 <html>
     <head>
-      <meta charset="utf-8">
-      <link rel="stylesheet" href="./CSS/styles.css" />
-      <title> Page de connexion </title>
+	<meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Théo MILLAIRE"/>
+        <link rel="stylesheet" href="./CSS/styles.css">
     </head>
-    <body class="connexion">
-        <header>
-            <!-- barre en haut du site (menu) -->
-            <div class="bandeau">
-                <div class="logoSite">
-                    <a href = "index.html">
-                        <img src= "photoMenu.jpg" alt= "Appartement" title= "logo" width= "90" height= "60"> 
-                    </a> 
-                </div>
-                <nav id="navigation">
-                    <div class="nav">
-                        <ul>
-                            <li> <a href = "connexion.html">Connexion </a> </li>
-                            <li> <a href = "inscription.html">Inscription </a> </li>
-                            <li> <a href = "index.html">Accueil </a> </li>
-                        </ul>
-                    </div>
-                </nav>
-            </div>
-            <h1>Connexion</h1>
-        </header>
-        
-        <form method="post" action= "connexion.php" >
-            <fieldset>
-                <legend>Vos identifiants</legend>
-                <p>
-                    <label for="nom_utilisateur">Nom d'utilisateur</label> :
-                    <input type="text" name="nom_utilisateur" id="nom_utilisateur" placeholder="entrez votre nom d'utilisateur" size="40" required />
-                    <br/>
-                    <label for="password">Mot de passe:</label>
-                    <input type="password" name="password" id="password" required />
-                    <br/>
-                    
-            </fieldset>
-                <input type="submit" value='LOGIN' />
-        </form>
-    </body>
-</html>
+	<body class='inscription'>
+           
+            <?php
+                // On recupere le nom et le mdp de l'utilisateur
+		$serveur = "localhost";
+		$dbname = "mesappartements";
+		$user = "root";
+		$pass = "";
+                
+                $password = $_POST['password'];
+                $nom_utilisateur = $_POST['nom_utilisateur'];
 
+               try{
+                    $dbco = new PDO("mysql:host=localhost;dbname=mesappartements","root","");
+                    $dbco->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                    
+                    $connexion = $dbco->prepare("SELECT COUNT(*) FROM users WHERE nom_utilisateur = ? AND password = ?");
+                    $connexion->execute([$nom_utilisateur,$password]);
+                    $compte = $connexion->fetch(PDO::FETCH_ASSOC)["COUNT(*)"];
+                    
+                    if($compte > 0){
+                        $reponse = $dbco->prepare("SELECT IdUser, Admin FROM users WHERE nom_utilisateur = ? AND password = ?");
+                        $reponse->execute([$nom_utilisateur,$password]);
+
+                        foreach ($reponse as $row ) {
+                            $IdUser = $row['IdUser'] ;
+                            $Admin = $row['Admin'];
+                        }
+
+                        $_SESSION['nom_utilsateur'] = $nom_utilisateur ;
+                        $_SESSION['IdUser'] = $IdUser;
+                        $_SESSION['password'] = $password;
+                        $_SESSION['Admin'] = $Admin;
+
+                        if($Admin == 'administrateur'){
+                            header("Location:AccueilAdmin.html");
+                        }
+                        else if($Admin == 'utilisateur'){
+                            header("Location:AccueilUtil.php");
+                        }
+                    }
+                    else{
+                      echo "<p>Nom ou mot de passe incorrect</br>";
+                      echo "<a href = \"connexion.html\"><input type=\"button\" value=\"retour\"></a></p>";  
+                    }
+                }
+                catch(PDOException $e){
+                        echo 'Impossible de traiter les données. Erreur : '.$e->getMessage();
+                }
+            ?>
+        </body>
+</html>
