@@ -1,3 +1,8 @@
+
+ <?php
+        // Démarage de la session  
+        session_start();
+        ?>
 <!DOCTYPE html>
 
 <html>
@@ -8,36 +13,54 @@
         <link rel="stylesheet" href="./CSS/styles.css">
     </head>
 	<body class='inscription'>
+           
             <?php
-                // Démarage de la session  
-                session_start();
                 // On recupere le nom et le mdp de l'utilisateur
-                $_SESSION['nom_utilisateur'] = $_POST['nom_utilisateur'];
-                $_SESSION['password'] = $_POST['passord'];
-
-                $DATABASE_HOST = 'localhost';
-                $USER = 'root';
-                $PASSWORD = '';
-                $DATABASE_NAME = 'mesappartements';
+		$serveur = "localhost";
+		$dbname = "mesappartements";
+		$user = "root";
+		$pass = "";
                 
-                try{
-			//On se connecte à la BDD
-			$dbco = new PDO("mysql:host=$DATABASE_HOST;dbname=$DATABASE_NAME",$USER,$PASSWORD);
-			$dbco->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-			
-                        if ( mysqli_connect_errno() ) {
-                                // S'il y a une erreur avec la connexion ca arrête le script et affiche l'erreur.
-                                exit('Erreur dans MySQL : ' . mysqli_connect_error());
+                $password = $_POST['password'];
+                $nom_utilisateur = $_POST['nom_utilisateur'];
+
+               try{
+                    $dbco = new PDO("mysql:host=localhost;dbname=mesappartements","root","");
+                    $dbco->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                    
+                    $connexion = $dbco->prepare("SELECT COUNT(*) FROM users WHERE nom_utilisateur = ? AND password = ?");
+                    $connexion->execute([$nom_utilisateur,$password]);
+                    $compte = $connexion->fetch(PDO::FETCH_ASSOC)["COUNT(*)"];
+                    
+                    if($compte > 0){
+                        $reponse = $dbco->prepare("SELECT IdUser, Admin FROM users WHERE nom_utilisateur = ? AND password = ?");
+                        $reponse->execute([$nom_utilisateur,$password]);
+
+                        foreach ($reponse as $row ) {
+                            $IdUser = $row['IdUser'] ;
+                            $Admin = $row['Admin'];
                         }
-                        
-                        if ( !isset($_POST['nom_utilisateur'], $_POST['password']) ) {
-                            //Impossible d'obtenir les données qui auraient dû être envoyées.
-                            exit('Veuillez remplir les champs nom dutilisateur et mot de passe!');
+
+                        $_SESSION['nom_utilsateur'] = $nom_utilisateur;
+                        $_SESSION['IdUser'] = $IdUser;
+                        $_SESSION['password'] = $password;
+                        $_SESSION['Admin'] = $Admin;
+
+                        if($Admin == 'administrateur'){
+                            header("Location:AccueilAdmin.html");
                         }
-                        
-                        if($stmt = $dbco->prepare('SELECT IdUser, password FROM users WHERE nom_utilisateur = ?')){
-                        
+                        else if($Admin == 'utilisateur'){
+                            header("Location:AccueilUtil.php");
+                        }
+                    }
+                    else{
+                      echo "<p>Nom ou mot de passe incorrect</br>";
+                      echo "<a href = \"connexion.html\"><input type=\"button\" value=\"retour\"></a></p>";  
+                    }
                 }
-                ?>
+                catch(PDOException $e){
+                        echo 'Impossible de traiter les données. Erreur : '.$e->getMessage();
+                }
+            ?>
         </body>
 </html>
