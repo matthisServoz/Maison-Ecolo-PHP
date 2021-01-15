@@ -108,7 +108,7 @@ and open the template in the editor.
                     echo
                     "</td>".
                     "<td>";
-                        echo "numero ".$res['num_maison']." ".$res['Rue']." a ".$res['ville'];
+                        echo "numero ".$res['NumeroMaison']." ".$res['Rue']." a ".$res['nom_reel'];
                     echo
                     "</td>".
                     "<td>";

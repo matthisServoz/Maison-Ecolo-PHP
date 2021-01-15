@@ -29,7 +29,7 @@ and open the template in the editor.
                 <nav id="navigation">
                     <div class="nav">
                         <ul>
-                            <li> <a href = "Location_appart_util.php">Louer un appartement</a> </li>
+                            <li> <a href = "Location_formulaire.php">Louer un appartement</a> </li>
                         </ul>
                     </div>
                 </nav>
@@ -39,7 +39,7 @@ and open the template in the editor.
         <h1>Bienvenue <?php echo $_SESSION['nom_utilsateur']?> sur notre site</h1>
         
         <p>Pour declarer une nouvelle location d'appartement aller sur l'onglet "Louez un appartement".</p>
-        <?php 
+        <?php
         // On compte le nombre d'appartement que loue l'utilisateur
         try{
             $date = date('y-m-d H:i:s');
@@ -103,7 +103,7 @@ and open the template in the editor.
                         $dbco = new PDO("mysql:host=localhost;dbname=mesappartements","root","");
                         $dbco->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-                        $reponse1 = $dbco->prepare("SELECT IdMaison,NomMaison,NumeroMaison,v.ville,v.IdVille,v.CodePostal,v.Rue "
+                        $reponse1 = $dbco->prepare("SELECT IdMaison,NomMaison,NumeroMaison,v.nom_reel,v.IdVille,v.CodePostal,maison.Rue "
                                                 . "FROM maison INNER JOIN ville AS v ON (maison.IdVille = v.IdVille) "
                                                 . "WHERE maison.IdMaison IN "
                                                     . "(SELECT IdMaison "
@@ -114,7 +114,7 @@ and open the template in the editor.
                         $reponse1->execute([$date,$date,$_SESSION['IdUser'],$res]);
                         //On récupère les infos sur la ligne (de la requête)
                         foreach ($reponse1 as $row){
-                            echo "numéro " . $row['NumeroMaison'] . " rue " . $row['Rue'] . " à " . $row['ville'] . " " . $row['CodePostal'];
+                            echo "numéro " . $row['NumeroMaison'] . " rue " . $row['Rue'] . " à " . $row['nom_reel'] . " " . $row['CodePostal'];
                             $NomMaison = $row['NomMaison'];
 
                         }

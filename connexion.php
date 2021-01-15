@@ -31,23 +31,20 @@
                     $compte = $connexion->fetch(PDO::FETCH_ASSOC)["COUNT(*)"];
                     
                     if($compte > 0){
-                        $reponse = $dbco->prepare("SELECT IdUser, Admin FROM users WHERE nom_utilisateur = ? AND password = ?");
+                        $reponse = $dbco->prepare("SELECT IdUser, Admin, IdVille FROM users WHERE nom_utilisateur = ? AND password = ?");
                         $reponse->execute([$nom_utilisateur,$password]);
-
-                        foreach ($reponse as $row ) {
-                            $IdUser = $row['IdUser'] ;
-                            $Admin = $row['Admin'];
-                        }
-                        
+                        $row = $reponse->fetch(PDO::FETCH_ASSOC);
+                                                
                         $_SESSION['nom_utilsateur'] = $nom_utilisateur ;
-                        $_SESSION['IdUser'] = $IdUser;
+                        $_SESSION['IdUser'] = $row['IdUser'];
                         $_SESSION['password'] = $password;
-                        $_SESSION['Admin'] = $Admin;
+                        $_SESSION['Admin'] = $row['Admin'];
+                        $_SESSION['IdVille'] = $row['IdVille'];
 
-                        if($Admin == 'administrateur'){
+                        if($row['Admin'] == 'administrateur'){
                             header("Location:AccueilAdmin.html");
                         }
-                        else if($Admin == 'utilisateur'){
+                        else if($row['Admin'] == 'utilisateur'){
                             header("Location:AccueilUtil.php");
                         }
                     }

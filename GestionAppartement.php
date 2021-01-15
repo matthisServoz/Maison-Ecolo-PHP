@@ -104,7 +104,7 @@ and open the template in the editor.
             }
             ?>
         </div>        
-        <a href = "GestionMaison.php"> <button "type="button">retour</button> </a>
+        <a href = "GestionMaison.php"> <button class="bouton" "type="button">retour</button> </a>
         
     </body>
 </head>

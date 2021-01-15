@@ -153,6 +153,11 @@ caption{
     color: #fff;
     background-color: blue;
 }
+.inscription button{
+    display: block;
+    margin : auto;
+}
+
 .formulaire_inscription div{
     display: flex;
     justify-content: center;
