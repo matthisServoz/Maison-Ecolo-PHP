@@ -19,12 +19,13 @@ p{
 }
 
 button{
-  display: block;
-  margin : auto;
+    display: block;
+    margin : auto;
 }
 input[type="submit"]{
-  display: block;
-  margin : auto;
+    
+    display: block;
+    margin: 0 auto;  
 }
 .bandeau, #navigation{
     background-color: #C0C0C0;
@@ -188,7 +189,9 @@ caption{
 .connexion input[type="submit"]{
   background-color : blue;
   border-radius : 5px;
-  margin : 5px 5px 5px 5px;
+  display: block;
+  margin: 0 auto;  
+
 }
 
 .connexion h1{
@@ -200,6 +203,18 @@ caption{
 
 .connexion form{
     text-align: center;
+}
+
+.connexion p{
+    text-align: center;
+}
+
+.connexion legend{
+    background-color: #e2e1de;
+    border-radius: 10px;
+    font-size: 1.3em;
+    padding: auto;
+    margin: auto;
 }
 
 
