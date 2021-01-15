@@ -18,31 +18,27 @@ and open the template in the editor.
         
     </head>
     <body> 
-        <!-- barre en haut du site (menu) -->
-        <div class="bandeau">
-            <div class="logoSite">
-                <a href = "index.html">
-                    <img src= "photoMenu.jpg" alt= "Appartement" title= "logo" width= "90" height= "60"> 
-                </a> 
-            </div>
-            
-            
-            
-            <nav id="navigation">
-                <div class="nav">
-                    <ul>
-                        <!--<li> <a href = "compte_util.php">monCompte </a> </li>-->
-                        <li> <a href = "Gestion_appart_util.php">mes appartements</a> </li>
-                        <!--<li> <a href = "AccueilUtil.html">ma Consomation </a> </li>-->
-               
-                    </ul>
+        <header>
+            <!-- barre en haut du site (menu) -->
+            <div class="bandeau">
+                <div class="logoSite">
+                    <a href = "AccueilAdmin.html">
+                        <img src= "photoMenu.jpg" alt= "Appartement" title= "logo" width= "90" height= "60"> 
+                    </a> 
                 </div>
-            </nav>
-            
-        </div>
+                <nav id="navigation">
+                    <div class="nav">
+                        <ul>
+                            <li> <a href = "Location_appart_util.php">Louer un appartement</a> </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </header>
                
         <h1>Bienvenue <?php echo $_SESSION['nom_utilsateur']?> sur notre site</h1>
         
+        <p>Pour declarer une nouvelle location d'appartement aller sur l'onglet "Louez un appartement".</p>
         <?php 
         // On compte le nombre d'appartement que loue l'utilisateur
         try{
@@ -138,7 +134,7 @@ and open the template in the editor.
             $reponse1->CloseCursor();
         }
         else{
-            echo "Vous ne louez pas d'appartement";
+            echo "<p>Vous ne louez pas d'appartement</p>";
         }
         ?>
         

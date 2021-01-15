@@ -107,4 +107,4 @@ and open the template in the editor.
         <a href = "GestionMaison.php"> <button "type="button">retour</button> </a>
         
     </body>
-    </head>
+</head>
