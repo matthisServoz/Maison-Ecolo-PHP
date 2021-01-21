@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>ajout d'un type d'appartement</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="./CSS/styles.css">
+    </head>
+    <body class='inscription'>
+        <header>
+            <!-- barre en haut du site (menu) -->
+            <div class="bandeau">
+                <div class="logoSite">
+                    <a href = "AccueilAdmin.html">
+                        <img src= "photoMenu.jpg" alt= "Appartement" title= "logo" width= "90" height= "60"> 
+                    </a> 
+                </div>
+                <nav id="navigation">
+                    <div class="nav">
+                        <ul>
+                            <li> <a href = "AccueilAdmin.html">Accueil</a> </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </header>
+        </br>
+        <form action="Ajout_type_appart.php" method="post" >
+                
+                <fieldset class="formulaire_inscription">
+                    <legend>Type d'appartement</legend>
+                    <p>
+                        <label for="type_libelle">
+                        Veuillez saisir le nouveau type d'appartement :
+                        </label>
+                        <br />
+                        <p>Il faut saisir dans la zone de text ci-dessous le libellé du nouveau type.</p>
+                        <p>ATTENTION : il faut écrire dans l'ordre </br> -le type </br>-puis une description </br>Voici un exemple :
+                        <textarea name="type_libelle" id="type_libelle" rows="10" cols="80">
+T1 : Le type T1 est composé d'une seule pièce principale avec une cuisine ouverte, le plus souvent une kitchenette, et une salle de bain ou une salle d'eau dans une pièce à part.
+                        </textarea> 
+                        </p>                                
+                </fieldset>        
+            <input type="submit" value="ajouter" />
+        </form>
+    </body>
+</html>

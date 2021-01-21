@@ -47,42 +47,32 @@ and open the template in the editor.
                     echo "<p>Cette maison existe deja</br>";
                     echo "<a href = \"creaMaison.html\"><input type=\"button\" value=\"retour\"></a></p>";
                 }else{
-                    
-                    //Sinon on insère les données reçues
-                    $sth = $dbco->prepare("
-                    INSERT INTO Ville(CodePostal , Rue, num_maison, ville, IdDepartement )
-                    VALUES(:codePostal , :rue , :numMaison , :ville, :idDep)");
-                    $sth->bindParam(':rue',$Rue);
-                    $sth->bindParam(':codePostal',$CodePostal);
-                    $sth->bindParam(':numMaison',$numeroM);
-                    $sth->bindParam(':ville',$ville);
-                    $sth->bindParam(':idDep',floor($CodePostal/1000));
-                    
-                    $sth->execute();
-                    $sth->CloseCursor();
-                    
-                    
-                                    
-                    $sth1 = $dbco->prepare("
-                    INSERT INTO Maison(NomMaison , NumeroMaison, Eval, Deg_iso, IdVille )
-                    VALUES(:nomMaison , :numeroM , :eval , :degreIso , :ville)");
-                    $sth1->bindParam(':nomMaison',$nomMaison);
-                    $sth1->bindParam(':numeroM',$numeroM);
-                    $sth1->bindParam(':eval',$eval);
-                    $sth1->bindParam(':degreIso',$degreIso);
-                    $sth1->bindParam(':ville',$dbco->lastInsertId());
-                    
-                    $sth1->execute();
-                    
-                    
-                    //On renvoie l'utilisateur vers la page d'accueil
-                    header("Location:creaMaison.html");
-                }
-                }
-                catch(PDOException $e){
-                    echo 'Impossible de traiter les données. Erreur : '.$e->getMessage();
+                    $reponse->CloseCursor();
+                    //On recupere l'IdVIlle de la ville.
+                    $requeteV = $dbco->prepare("SELECT IdVille FROM Ville WHERE nom_reel = ? AND CodePostal = ?");
+                    $requeteV->execute([$ville,$CodePostal]);
+                    $Idville = $requeteV->fetch(PDO::FETCH_ASSOC)["IdVille"];
+                    //On v�rifie que la requete retourne un r�sultat
+                    if (isset($Idville)){
+                        $sth = $dbco->prepare("
+                        INSERT INTO Maison(NomMaison, NumeroMaison, Eval, Deg_iso, Rue, IdVille)
+                        VALUES(?, ?, ? ,? ,? , ?)");
+                        $sth->execute([$nomMaison,$numeroM,$eval,$degreISo,$Rue,$Idville]);
+                        $sth->CloseCursor();                   
+
+                        //On renvoie l'utilisateur vers la page d'accueil
+                        header("Location:GestionMaison.php");
                     }
-                
+                    else{
+                        echo "<p>La ville saisie n'existe pas, verifier le nom et/ou le code postal</br>";
+                        echo "<a href = \"creaMaison.html\"><input type=\"button\" value=\"retour\"></a></p>";
+                    }
+                }
+            }    
+            catch(PDOException $e){
+                echo 'Impossible de traiter les données. Erreur : '.$e->getMessage();
+            }
+
         ?>
         
         

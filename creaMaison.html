@@ -11,29 +11,47 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="./CSS/styles.css">
     </head>
-    <body>
+    <body class='inscription'>
+        <header>
+            <!-- barre en haut du site (menu) -->
+            <div class="bandeau">
+                <div class="logoSite">
+                    <a href = "AccueilAdmin.html">
+                        <img src= "photoMenu.jpg" alt= "Appartement" title= "logo" width= "90" height= "60"> 
+                    </a> 
+                </div>
+                <nav id="navigation">
+                    <div class="nav">
+                        <ul>
+                            <li> <a href = "AccueilAdmin.html">Accueil</a> </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </header>
+        </br>
         <form action="creaMaison.php" method="post" >
                 
                 <fieldset class="formulaire_inscription">
                     <legend>information de votre maison</legend>
                     <p>
-                        <label for="nomMaison">nomMaison</label> :
+                        <label for="nomMaison">Nom de la maison </label> :
                         <input type="text" name="nomMaison" id="nomMaison" placeholder="Entrez ici" size="40" required />
                         <br/>
                       
-                        <label for="numeroM">numeroM</label> :
+                        <label for="numeroM">Numéro de la maison </label> :
                         <input type="number" name="numeroM" id="numeroM" required />
                         <br/>
-                        <label for="evalution">eval </label> :
+                        <label for="evalution">Evaluation de la maison </label> :
                         <input type="text" name="eval" id="eval" placeholder="Evaluation de la maison" size="40" required />
                         <br/>
-                        <label for="degreIso">degreIso </label> :
+                        <label for="degreIso">Degré d'isolation de la maison </label> :
                         <input type="text" name="degreIso" id="degreIso" placeholder="degre d'isolation" size="40" required />
                         <br/>
                         <label for="ville">ville </label> :
                         <input type="text" name="ville" id="ville" placeholder="ville de la maison" size="40" required />
                         <br/>
-                         <label for="CodePostal">CodePostal </label> :
+                         <label for="CodePostal">Code Postal </label> :
                         <input type="number" name="CodePostal" id="CodePostal" required />
                         <br/>
                         <label for="Rue">Rue </label> :

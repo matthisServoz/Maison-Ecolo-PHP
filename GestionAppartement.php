@@ -12,7 +12,7 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
     </head>
-    <body>
+    <body class = "inscription">
         <header>
             <!-- barre en haut du site (menu) -->
             <div class="bandeau">
@@ -31,13 +31,16 @@ and open the template in the editor.
             </div>
         </header>
         </br>
-        <p>Cliquez sur "ajout" pour ajouter un nouveau appartement</p>
-        <a href = "creaMaison.html"> <button "type="button">nouveau appartement</button> </a>
         <div>
             <?php 
 
             $IdMaison = $_POST['IdMaison'];
-            // On compte le nombre de maison
+            echo "<p>Cliquez sur \"ajout\" pour ajouter un nouveau appartement</p>".
+            "<form action=\"creaAppart.php\" method=\"post\" >".
+            "<input type=\"hidden\" value=\"".$IdMaison."\" id=\"IdMaison\" name=\"IdMaison\"/>".
+            "<input type=\"submit\" value=\"ajouter\" />".
+            "</form>";
+            // On compte le nombre d'appartement
             try{
                 $dbco = new PDO("mysql:host=localhost;dbname=mesappartements","root","");
                 $dbco->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -73,6 +76,8 @@ and open the template in the editor.
                     $reponse = $dbco->prepare("SELECT DISTINCT * ".
                                              "FROM maison INNER JOIN appartement ".
                                              "ON (maison.IdMaison = appartement.IdMaison)".
+                                             "INNER JOIN typeappartement ".
+                                             "ON (appartement.IdTypeAppartement = typeappartement.IdTypeAppartement)".
                                              "WHERE appartement.IdMaison = ?");
                     $reponse->execute([$IdMaison]);
                 }
@@ -90,9 +95,10 @@ and open the template in the editor.
                         "</td>".
                         "<td>";
                             echo $res['Deg_sec'];
-                        echo
+                        echo 
                         "</td>".
                         "<td>";
+                            echo substr($res['Libelle'],0,3);
 
                     echo "</tr>";
 

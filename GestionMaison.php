@@ -34,14 +34,11 @@ and open the template in the editor.
             </div>
         </header>
         </br>
-        <p>Cliquez sur "ajout" pour ajouter une nouvelle maison, 
+        <p>Cliquez sur "nouvelle maison" pour ajouter une nouvelle maison, 
             cliquez sur une maison deja existante pour y ajouter des appartements !</p>
-        </br>
-        <a href = "creaMaison.html"> <button 
-                   "type="button">
-                   nouvelle maison
-                
-        </button> </a>
+        <a href = "creaMaison.html"> <button "type="button">nouvelle maison</button> </a>
+        <p>Cliquez sur "Ajouter" pour ajouter un nouveau type d'appartement</p>
+        <a href = "Ajout_type_appart.html"> <button "type="button">Ajouter</button> </a>
         
         <!<!-- Partie qui affiche la liste des maisons  -->
         <?php 

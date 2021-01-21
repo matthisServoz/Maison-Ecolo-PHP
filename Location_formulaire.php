@@ -73,7 +73,7 @@ and open the template in the editor.
             }else{
                 //on utilise la view qui a ete cree precedemment pour avoir les infos
                 $requete_info = $dbco->prepare("SELECT * FROM appart_dispo");
-                $requete_info->execute([$DateDebL]);
+                $requete_info->execute();
                 echo "<form action=\"Location_formulaire.php\" method=\"post\" >
                     <div>";
                 for($index = 0; $index < $nb_appart_dispo; $index++){
