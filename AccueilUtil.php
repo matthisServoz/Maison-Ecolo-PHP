@@ -69,6 +69,8 @@ and open the template in the editor.
                 "<th>numéro d'appartement</th>".
                 "<th>adresse</th>".
                 "<th>Situé dans l'immeuble</th>".
+                "<th>Date de debut de location</th>".
+                "<th>Date de fin de location</th>".
             "</tr>";
              
             //on récupère les id des appartements
@@ -77,7 +79,7 @@ and open the template in the editor.
                 $dbco = new PDO("mysql:host=localhost;dbname=mesappartements","root","");
                 $dbco->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-                $reponse = $dbco->prepare("SELECT l.IdAppartement "
+                $reponse = $dbco->prepare("SELECT * "
                                         . "FROM louer AS l INNER JOIN appartement AS a ON (l.IdAppartement = a.IdAppartement)"
                                         . " WHERE DateDebutL <= ? "
                                             . "AND DateFinL > ? "
@@ -89,46 +91,54 @@ and open the template in the editor.
             }
             //on affiche les info des apparts sur chaque lignes
             for($index_appart = 0; $index_appart < $nb_appart; $index_appart++){
-            $res = $reponse->fetch(PDO::FETCH_ASSOC)["IdAppartement"];
-            echo 
-            "<tr>".
-                "<td>";
-                    
-                    echo $res;
+                $res = $reponse->fetch(PDO::FETCH_ASSOC);
                 echo 
-                "</td>".
-                "<td>";
-                    try{
-                        $date = date('y-m-d H:i:s');
-                        $dbco = new PDO("mysql:host=localhost;dbname=mesappartements","root","");
-                        $dbco->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                "<tr>".
+                    "<td>";
 
-                        $reponse1 = $dbco->prepare("SELECT IdMaison,NomMaison,NumeroMaison,v.nom_reel,v.IdVille,v.CodePostal,maison.Rue "
-                                                . "FROM maison INNER JOIN ville AS v ON (maison.IdVille = v.IdVille) "
-                                                . "WHERE maison.IdMaison IN "
-                                                    . "(SELECT IdMaison "
-                                                    . "FROM louer AS l INNER JOIN appartement AS a ON (l.IdAppartement = a.IdAppartement)"
-                                                    . " WHERE DateDebutL <= ? "
-                                                        . "AND DateFinL > ? "
-                                                        . "AND IdUser = ? AND l.IdAppartement = ?) ");
-                        $reponse1->execute([$date,$date,$_SESSION['IdUser'],$res]);
-                        //On récupère les infos sur la ligne (de la requête)
-                        foreach ($reponse1 as $row){
-                            echo "numéro " . $row['NumeroMaison'] . " rue " . $row['Rue'] . " à " . $row['nom_reel'] . " " . $row['CodePostal'];
-                            $NomMaison = $row['NomMaison'];
+                        echo $res["IdAppartement"];
+                    echo 
+                    "</td>".
+                    "<td>";
+                        try{
+                            $date = date('y-m-d H:i:s');
+                            $dbco = new PDO("mysql:host=localhost;dbname=mesappartements","root","");
+                            $dbco->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+                            $reponse1 = $dbco->prepare("SELECT IdMaison,NomMaison,NumeroMaison,v.nom_reel,v.IdVille,v.CodePostal,maison.Rue "
+                                                    . "FROM maison INNER JOIN ville AS v ON (maison.IdVille = v.IdVille) "
+                                                    . "WHERE maison.IdMaison IN "
+                                                        . "(SELECT IdMaison "
+                                                        . "FROM louer AS l INNER JOIN appartement AS a ON (l.IdAppartement = a.IdAppartement)"
+                                                        . " WHERE DateDebutL <= ? "
+                                                            . "AND DateFinL > ? "
+                                                            . "AND IdUser = ? AND l.IdAppartement = ?) ");
+                            $reponse1->execute([$date,$date,$_SESSION['IdUser'],$res["IdAppartement"]]);
+                            //On récupère les infos sur la ligne (de la requête)
+                            foreach ($reponse1 as $row){
+                                echo "numéro " . $row['NumeroMaison'] . " rue " . $row['Rue'] . " à " . $row['nom_reel'] . " " . $row['CodePostal'];
+                                $NomMaison = $row['NomMaison'];
+
+                            }
                         }
-                    }
-                    catch(PDOException $e){
-                            echo 'Impossible de traiter les données. Erreur : '.$e->getMessage();
-                    }
-                echo
-                "</td>".
-                "<td>";
-                    echo $NomMaison;
-                    
-                echo
-                "</td>";
+                        catch(PDOException $e){
+                                echo 'Impossible de traiter les données. Erreur : '.$e->getMessage();
+                        }
+                    echo
+                    "</td>".
+                    "<td>";
+                        echo $NomMaison;
+                    echo
+                    "</td>".
+                    "<td>";
+                        echo $res["DateDebutL"];
+                    echo
+                    "</td>".
+                    "<td>";
+                        echo $res["DateFinL"];
+
+                    echo
+                    "</td>";
             }
             $reponse->CloseCursor();
             $reponse1->CloseCursor();
