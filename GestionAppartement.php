@@ -65,6 +65,7 @@ and open the template in the editor.
                     "<th>Numero de l'appartement</th>".
                     "<th>degres d'isolation</th>".
                     "<th>Type</th>".
+                    "<th>Pieces dans l'appartement</th>".
                 "</tr>";
 
                 //on recupere les info sur les maisons
@@ -99,8 +100,14 @@ and open the template in the editor.
                         "</td>".
                         "<td>";
                             echo substr($res['Libelle'],0,3);
+                        echo 
+                            "</td><td>";
+                            echo "<form action=\"GestionPieces.php\" method=\"post\" >".
+                             "<input type=\"hidden\" value=\"".$res['IdAppartement']."\" id=\"IdAppartement\" name=\"IdAppartement\"/>".
+                             "<input type=\"submit\" value=\"voir\" />".
+                             "</form>";
 
-                    echo "</tr>";
+                    echo "</td></tr>";
 
                 }
                 $reponse->CloseCursor();

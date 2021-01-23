@@ -34,16 +34,17 @@ and open the template in the editor.
             </div>
         </header>
         </br>
-        <p>Cliquez sur "Ajouter" pour ajouter un nouveau type de piece</p>
-        <form action="GestionPieces.php" method="post"  >
-            <p>
-            <label for="Nomtype">Nom du type de la piece </label> :
-            <input type="text" name="Nomtype" id="Nomtype" placeholder="Entrez ici" size="40" required />
-            <input type="submit" value="ajouter" />
-            </p>
-        </form>
-        <!-- Partie qui affiche la liste des type de pieces  -->
-        <?php 
+        <?php
+        echo "<div><p>Cliquez sur \"Ajouter\" pour ajouter un nouveau type de piece</p>".
+        "<form action=\"GestionPieces.php\" method=\"post\" >".
+            "<p>".
+            "<label for=\"Nomtype\">Nom du type de la piece </label> :".
+            "<input type=\"text\" name=\"Nomtype\" id=\"Nomtype\" placeholder=\"Entrez ici\" size=\"40\" required />".
+            "<input type=\"submit\" value=\"ajouter\" />".
+            "</p>".
+        "</form>".
+        "</div>";
+        //Partie qui affiche la liste des type de pieces
         $dbco = new PDO("mysql:host=localhost;dbname=mesappartements","root","");
         $dbco->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         
@@ -68,10 +69,8 @@ and open the template in the editor.
             }
             if ($resultat1["COUNT(*)"] != 0){
                 echo 
-                "<p>Voici la liste des types de pieces :</p>".
-                "<table>".
+                "<p>Voici la liste des types de pieces :</p><table>".
                 "<caption>Liste des types de piece</caption>".
-
                 "<tr>".
                     "<th>Nom du type</th>".
                 "</tr>";
@@ -86,13 +85,75 @@ and open the template in the editor.
                 }
                 $requete->CloseCursor();
                 $requete_compt->CloseCursor();
-
+                echo "</table>";
                 }
             else{
                 echo "<p>Il n'y a pas de type de piece</p>";
             }
         }
         ?>
+        
+        <?php
+        if (isset($_POST['IdAppartement'])){
+            echo "<div>
+            <p> Voici les piece qu'il y a dans l'appartement :</p>";
+            $requete_compt = $dbco->prepare("SELECT COUNT(*)"
+                                    . "FROM piece WHERE IdAppartement = ?");
+            $requete_compt->execute([$_POST['IdAppartement']]);
+            $requete = $dbco->prepare("SELECT * "
+                                    . "FROM piece INNER JOIN typepieces USING(IdTypePiece) WHERE IdAppartement = ?");
+            $requete1 = $dbco->prepare("SELECT * "
+                                        . "FROM typepieces");
+            $requete1->execute();
+            $resultat1 = $requete_compt->fetch(PDO::FETCH_ASSOC);
+            
+            echo "<p>Remplir le formulaire ci-dessous pour en ajouter .</p>";
+            echo "<form action=\"GestionPieces.php\" method=\"post\" ><p>".
+                  "<label for=\"NomPiece\">Nom de la piece</label> :".
+                  "<input type=\"text\" name=\"NomPiece\" id=\"NomPiece\" placeholder=\"saisir le nom\" size=\"40\" required /></br>".
+                  "<label for=\"ajoutPiece\">Selectionnez le type de piece a ajoute</label><br />".
+                  "<select name=\"ajoutPiece\" id=\"ajoutPiece\">";
+            foreach ($requete1 as $row){
+                echo "<option value=".$row['NomType'].">".$row['NomType']."</option>";
+            }
+            echo "<input type=\"hidden\" value=\"".$_POST['IdAppartement']."\" id=\"IdAppartement\" name=\"IdAppartement\"/>".
+                  "<input type=\"submit\" value=\"Ajouter\" /></p></form>";                        
+
+            if (isset($_POST['IdAppartement']) AND isset($_POST['ajoutPiece']) AND isset($_POST['NomPiece'])){
+                $requete_typePiece = $dbco->prepare("SELECT IdTypePiece FROM typepieces WHERE NomType = ?");
+                $requete_typePiece->execute([$_POST['ajoutPiece']]);
+                $res = $requete_typePiece->fetch(PDO::FETCH_ASSOC);
+                $requete_ajout = $dbco->prepare("INSERT INTO piece(NomPiece , IdAppartement, IdTypePiece) "
+                                                . "VALUES (? , ? , ?);");
+                $requete_ajout->execute([$_POST['NomPiece'],$_POST['IdAppartement'], $res['IdTypePiece']]);
+                
+                $requete_ajout->closeCursor();
+                $requete_typePiece->closeCursor();
+            }
+            $requete->execute([$_POST['IdAppartement']]);
+            echo "<table>".
+                 "<tr>".
+                "<th>Nom de la piece</th>".
+                "<th>Type de piece</th>".
+                "</tr>";
+            foreach ($requete as $row){
+                echo
+                "<tr>".
+                    "<td>"
+                        .$row['NomPiece'].
+                    "</td>".
+                    "<td>"
+                        .$row['NomType'].
+                    "</td>".
+                "</tr>";
+            }
+            echo "</table>";
+            
+        }else{
+            echo "<p><a href = \"GestionMaison.php\"><input type=\"button\" value=\"retour\"></a></p>";
+        }
+        ?>
+        </div>
         
     </body>
 </head>

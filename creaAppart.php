@@ -43,25 +43,12 @@ and open the template in the editor.
                 $Deg_sec = $_POST["Deg_sec"];            
                 $type_appart_choisi = $_POST["type_appart_choisi"];
                 try{
-                //On vérifie que l'a maison'appartement n'existe pas 
-
-                    $reponse = $dbco->prepare("SELECT COUNT(*) FROM appartement WHERE Deg_sec = ? AND IdMaison = ? AND IdTypeAppartement = ?");
-                    $reponse->execute([$Deg_sec,$IdMaison,$type_appart_choisi]);
-                    $compte = $reponse->fetch(PDO::FETCH_ASSOC)["COUNT(*)"];
-
-                    if ($compte>0){
-                        $reponse->CloseCursor();
-                        echo "<p>Cet appartement existe deja</br>";
-                        echo "<a href = \"creaAppart.php\"><input type=\"button\" value=\"retour\"></a></p>";
-                    }else{
-                        $reponse->CloseCursor();
-                        //On ajout l'appartemnt
-                        $requeteV = $dbco->prepare("INSERT INTO Appartement(Deg_sec , IdMaison , IdTypeAppartement)
-                            VALUES(?, ?, ? )");
-                        $requeteV->execute([$Deg_sec,$IdMaison,$type_appart_choisi]);
-                        $requeteV->CloseCursor();
-                        header("Location:GestionMaison.php");
-                    }
+                    //On ajout l'appartemnt
+                    $requeteV = $dbco->prepare("INSERT INTO Appartement(Deg_sec , IdMaison , IdTypeAppartement)
+                        VALUES(?, ?, ? )");
+                    $requeteV->execute([$Deg_sec,$IdMaison,$type_appart_choisi]);
+                    $requeteV->CloseCursor();
+                    header("Location:GestionMaison.php");
                 }    
                 catch(PDOException $e){
                     echo 'Impossible de traiter les données. Erreur : '.$e->getMessage();
